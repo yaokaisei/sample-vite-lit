@@ -1,0 +1,6 @@
+# Ignore the component scripts and CSS
+# Vite is serving or building them
+
+components/**
+assets/**
+static/**

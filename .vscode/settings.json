@@ -1,0 +1,6 @@
+{
+  "eslint.options": {
+    "overrideConfigFile": ".eslintrc.js"
+  },
+  "stylelint.configFile": ".stylelintrc",
+}

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/static/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>11ty</title>
+    <%#
+      Backend Integration
+      11tyの環境変数とvite側で生成されたマニフェストを用いてカスタム結合をおこなっています
+      このプロジェクトにおいて、HTML配信はviteの対象外であることに注意してください。
+      https://ja.vitejs.dev/guide/backend-integration.html
+    %>
+    <%_ if (env === 'production') { _%>
+    <%#
+      本番環境
+      `_data/manifest.js`で`manifest.json`をパースして受け取ったデータからレンダリング
+    %>
+    <link rel="stylesheet" href="<%= manifest['src/main.ts'].css %>" />
+    <script type="module" src="<%= manifest['src/main.ts'].file %>"></script>
+    <% } else { -%>
+    <%#
+      開発環境
+      viteが立ち上げたローカルサーバーからアセットファイルを読み込む
+    %>
+    <script type="module" src="http://localhost:3000/@vite/client"></script>
+    <script type="module" src="http://localhost:3000/src/main.ts"></script>
+    <%_ } _%>
+  </head>
+  <body>
+    <header>
+      <h1>11ty</h1>
+      <nav>
+        <ul>
+          <li><a href="/test/">マルチページ</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <p><img src="/static/favicon.svg" alt="" width="200"></p>
+
+    <utility-wrapper data-test-id="00000">
+      <counter-button>Count UP Button</counter-button>
+    </utility-wrapper>
+
+    <utility-wrapper data-test-id="00000">
+      <utility-button text="Utility Button" size="large">ボタンテキスト</utility-button>
+    </utility-wrapper>
+
+    <p>This is child content</p>
+  </body>
+</html>

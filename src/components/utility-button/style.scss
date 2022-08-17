@@ -1,0 +1,12 @@
+button {
+  display: block;
+  background: #607d8b;
+  border: 0;
+  padding: 10px 30px;
+  border-radius: 30px;
+  color: #fff;
+
+  &.regular {font-size:20px;}
+  &.large {font-size:30px;}
+  &.small {font-size:15px;}
+}
